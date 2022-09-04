@@ -1,56 +1,40 @@
 class Cuenta:
-    def __init__(self, titular, edad, dni):
-        self.__nombre = nombre
-        self.__edad = edad
-        self.__dni = dni
+    def __init__(self, titular, *kargs):
+        self.__titular = titular
+        self.__cantidad = 0.0
 
     @property
-    def nombre(self):
-        return self.__nombre
+    def titular(self):
+        return self.__titular
 
-    @nombre.setter
-    def nombre(self, nombre):
-        self.__nombre = nombre
-
-    @property
-    def edad(self):
-        return self.__edad
-
-    @edad.setter
-    def edad(self, edad):
-        # SI LA PERSONA POR ERROR ES MUY JOVEN O MUY VIEJA 
-        while edad <= 0 or edad > 120:
-            print(f'{edad} años de edad? ...no está bién.')
-            edad = int(input('Cual sería la edad correcta?: '))
-
-        self.__edad = edad
+    @titular.setter
+    def titular(self, titular):
+        self.__titular = titular
 
     @property
-    def dni(self):
-        return self.__dni
+    def cantidad(self):
+        return self.__cantidad
 
-    @dni.setter
-    def dni(self, dni):
-        # EL DNI TIENE COMO MAX 8 NUMEROS
-        while len(dni) > 8 or not dni.isnumeric():
-            print(f'EL DNI no tiene el formato adecuado...')
-            dni = input('Ingrese un DNI como máximo 8 numeros: ')
+    @cantidad.setter
+    def cantidad(self, cantidad):
+        self.__cantidad += cantidad
 
-        self.__dni = dni
+    def ingresar(self, cantidad):
+        if cantidad > 0:
+            self.cantidad(cantidad)
+
+    def retirar(self, cantidad):
+        self.cantidad(cantidad * -1)
 
     def mostrar(self):
-        return f'Nombre: {self.__nombre}\n  Edad: {self.__edad}\n   DNI: {self.__dni}'
-
-    def es_mayor_de_edad(self):
-        return int(self.edad) >= 18
+        return f'Datos de la Cuenta:\nTitular: {self.__titular}\n  Saldo: {self.__cantidad}'
 
 
 if __name__ == '__main__':
-    p1 = Persona('Julian', 48, '12345678')
-    p2 = Persona('Paula', 15, '87654321')
+    c1 = Cuenta('Julian')
+
+    print(c1.mostrar())
     
-    print(p1.mostrar())
-    print('Es mayor de edad?:', p1.es_mayor_de_edad())
+    c1.ingresar(10000)
+    print(c1.mostrar())
     
-    print(p2.mostrar())
-    print('Es mayor de edad?:', p2.es_mayor_de_edad())
