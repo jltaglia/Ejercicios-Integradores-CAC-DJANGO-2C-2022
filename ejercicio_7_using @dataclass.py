@@ -1,13 +1,13 @@
-# ****************************
-#          ATENCION!
-# ESTE SCRIPT TODAVIA NO ESTA
-#       FUNCIONANDO !!!
-# ****************************
+from dataclasses import dataclass
 
+@dataclass
 class Cuenta:
+    __titular: str
+    __cantidad: float = 0.0
+
     __slots__ = ['__titular','__cantidad']
 
-    def __init__(self, titular):
+    def __init__(self, titular: str):
         self.titular = titular
         self.cantidad = 0.0
 
@@ -24,42 +24,36 @@ class Cuenta:
         return self.__cantidad
 
     @cantidad.setter
-    def cantidad(self, cantidad):
+    def cantidad(self, cantidad: float = 0.0):
         self.__cantidad = cantidad
 
     def ingresar(self, cant):
         if cant > 0:
-            self.cantidad += cant
-            # cantidad(cantidad)
+            cant_ant = self.cantidad
+            self.cantidad = (cant_ant + cant)
 
     def retirar(self, cant):
         if cant < 0:
             # POR LAS DUDAS QUE EL USUARIO HAYA INGRESADO
-            # UNA CANTIDAD NEGATIVA
+            # POR ERROR UNA CANTIDAD NEGATIVA PARA RETIRAR 
             cant = cant * -1
-        self.cantidad -= cant
+        cant_ant = self.cantidad
+        self.cantidad = cant_ant - cant
 
     def mostrar(self):
         return f'Datos de la Cuenta:\nTitular: {self.titular}\n  Saldo: {self.cantidad}'
 
 
 if __name__ == '__main__':
-    # c1 = Cuenta('Julian')
     c1 = Cuenta('Julian')
-    print('Después de instanciar el objeto Cuenta()')
-    print(c1.mostrar(),'\n')
-
+    print(c1.mostrar())
+    
     c1.ingresar(10000)
     print('Después de ingresar(10000)')
-    print(c1.mostrar(),'\n')
-
-    c1.retirar(500)
-    print('Después de retirar(500)')
-    print(c1.mostrar(),'\n')
-
-    try:
-        c1.deuda = -5000
-    except AttributeError:
-        print("'Cuenta' object has no attribute 'deuda'")
-        print('Este error aparece, gracias al uso de __slots__,\nal querer asignar al objeto una propiedad inexistente.\n')
-        
+    print(c1.mostrar())
+    
+    c1.cantidad = 50
+    print(c1.cantidad)
+    
+    print(c1.mostrar())
+    
