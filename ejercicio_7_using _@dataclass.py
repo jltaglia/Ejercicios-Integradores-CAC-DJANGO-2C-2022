@@ -2,8 +2,8 @@ from dataclasses import dataclass
 
 @dataclass
 class Cuenta:
-    __titular: str
-    __cantidad: float = 0.0
+    titular: str
+    cantidad: float = 0.0
 
     __slots__ = ['__titular','__cantidad']
 
@@ -46,14 +46,19 @@ class Cuenta:
 
 if __name__ == '__main__':
     c1 = Cuenta('Julian')
-    print(c1.mostrar())
-    
+    print('Después de instanciar el objeto Cuenta()')
+    print(c1.mostrar(),'\n')
+
     c1.ingresar(10000)
     print('Después de ingresar(10000)')
-    print(c1.mostrar())
-    
-    c1.cantidad = 50
-    print(c1.cantidad)
-    
-    print(c1.mostrar())
-    
+    print(c1.mostrar(),'\n')
+
+    c1.retirar(500)
+    print('Después de retirar(500)')
+    print(c1.mostrar(),'\n')
+
+    try:
+        c1.deuda = -5000
+    except AttributeError:
+        print("AttributeError: 'Cuenta' object has no attribute 'deuda'")
+        print('(*) Este error aparece, gracias al uso de __slots__,\nal querer asignar al objeto una propiedad inexistente.\n')

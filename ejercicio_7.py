@@ -1,12 +1,16 @@
-# ****************************
-#          ATENCION!
-# ESTE SCRIPT TODAVIA NO ESTA
-#       FUNCIONANDO !!!
-# ****************************
-
 class Cuenta:
-    __slots__ = ['__titular','__cantidad']
+    '''
+    La Cuenta debe ser iniciada con el nombre del titular
+    y opcionalmente se puede ingresar la cantida inicial
+    de dinero disponible. Ej:
+    c = Cuenta('Juan Perez', 1000) ->
+        Datos de la Cuenta:
+        Titular: Juan Perez
+          Saldo: 1000.0
+    '''
 
+    __slots__ = ('__titular','__cantidad')
+    
     def __init__(self, titular):
         self.titular = titular
         self.cantidad = 0.0
@@ -40,11 +44,13 @@ class Cuenta:
         self.cantidad -= cant
 
     def mostrar(self):
-        return f'Datos de la Cuenta:\nTitular: {self.titular}\n  Saldo: {self.cantidad}'
+        msg = f'Datos de la Cuenta:\n'
+        msg += f'Titular: {self.titular}\n'
+        msg += f'  Saldo: {self.cantidad:12.2f}\n'
+        return msg
 
 
 if __name__ == '__main__':
-    # c1 = Cuenta('Julian')
     c1 = Cuenta('Julian')
     print('Después de instanciar el objeto Cuenta()')
     print(c1.mostrar(),'\n')
@@ -60,6 +66,5 @@ if __name__ == '__main__':
     try:
         c1.deuda = -5000
     except AttributeError:
-        print("'Cuenta' object has no attribute 'deuda'")
-        print('Este error aparece, gracias al uso de __slots__,\nal querer asignar al objeto una propiedad inexistente.\n')
-        
+        print("AttributeError: 'Cuenta' object has no attribute 'deuda'")
+        print('(*) Este error aparece, gracias al uso de __slots__,\nal querer asignar al objeto una propiedad inexistente.\n')
