@@ -1,4 +1,9 @@
 def get_int_iter(cadena):
+    '''
+    Lee un valor entero ingresado por el usuario y lo devuelve,
+    iterando mientras el valor no sea correcto.
+    (**) RESUELTO EN FORMA ITERATIVA
+    '''
     try:
         numero = int(cadena)
         return numero
@@ -6,6 +11,11 @@ def get_int_iter(cadena):
         return False
 
 def get_int_recurs(cadena):
+    '''
+    Lee un valor entero ingresado por el usuario y lo devuelve,
+    iterando mientras el valor no sea correcto.
+    (**) RESUELTO EN FORMA RECURSIVA
+    '''
     cadena = input('ingrese la cadena a convertir: ')
     try:
         numero = int(cadena)

@@ -1,4 +1,15 @@
 class Persona:
+    '''
+    Persona:
+    - La Persona puede tener 
+        nombre: str
+        edad: int = de 0 a 120 años
+        dni: str = cadena de hasta 8 número solamente
+    - Para ver los datos de la persona usar el método
+      mostrar().
+    - Para saber si la persona es mayor de edad usar el
+      método es_mayor_de_edad(): bool
+    '''
     def __init__(self):
         self.__nombre = ''
         self.__edad = 0
@@ -18,7 +29,8 @@ class Persona:
 
     @edad.setter
     def edad(self, edad):
-        # SI LA PERSONA POR ERROR ES MUY JOVEN O MUY VIEJA 
+        # PARA VERIFICAR QUE LA EDAD INGRESADA
+        # ESTE DENTRO DE LOS PARAMETROS NORMALES
         while edad <= 0 or edad > 120:
             print(f'{edad} años de edad? ...no está bién.')
             edad = int(input('Cual sería la edad correcta?: '))
