@@ -1,12 +1,12 @@
 class Cuenta:
     '''
-    La Cuenta debe ser iniciada con el nombre del titular
-    y opcionalmente se puede ingresar la cantida inicial
-    de dinero disponible. Ej:
-    c = Cuenta('Juan Perez', 1000) ->
-        Datos de la Cuenta:
-        Titular: Juan Perez
-          Saldo: 1000.0
+    Cuenta:
+    - La Cuenta debe ser iniciada con el nombre del titular.
+    - La cantidad solo se debe ingresar a través del método
+      correspondiente ingresar() y modificar solo a través 
+      del método ingresar() o retirar().
+    - Para ver los datos de la cuenta usar el método
+      mostrar().
     '''
 
     __slots__ = ('__titular','__cantidad')
@@ -44,15 +44,15 @@ class Cuenta:
         self.cantidad -= cant
 
     def mostrar(self):
-        msg = f'Datos de la Cuenta:\n'
-        msg += f'Titular: {self.titular}\n'
-        msg += f'  Saldo: {self.cantidad:12.2f}\n'
+        msg = f'    Datos de la Cuenta:\n'
+        msg += f'    Titular: {self.titular}\n'
+        msg += f'      Saldo: {self.cantidad:12.2f}\n'
         return msg
 
 
 if __name__ == '__main__':
     c1 = Cuenta('Julian')
-    print('Después de instanciar el objeto Cuenta()')
+    print('Creando la Cuenta de Julian')
     print(c1.mostrar(),'\n')
 
     c1.ingresar(10000)
@@ -67,4 +67,5 @@ if __name__ == '__main__':
         c1.deuda = -5000
     except AttributeError:
         print("AttributeError: 'Cuenta' object has no attribute 'deuda'")
-        print('(*) Este error aparece, gracias al uso de __slots__,\nal querer asignar al objeto una propiedad inexistente.\n')
+        print('(*) Este error aparece, gracias al uso de __slots__,')
+        print('al querer asignar al objeto una propiedad inexistente.')
