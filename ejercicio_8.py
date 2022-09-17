@@ -8,7 +8,7 @@ class CuentaJoven(Cuenta):
       y la edad del titular para ver si clasifica como cliente
       para Cuenta Joven. 
       Asimismo, por ser una Cuenta Joven debe incluir el
-      porcentaje de bonificaión asignado a la cuenta.
+      porcentaje de bonificación asignado a la cuenta.
     - La cantidad se debe ingresar a través del método
       correspondiente ingresar() y modificar a través 
       del método retirar() solo si el titular es válido
@@ -19,13 +19,12 @@ class CuentaJoven(Cuenta):
 
     __slots__ = ('__titular', '__cantidad', '__edad', '__bonific')
 
-    def __init__(self, titular, edad: int, bonific: float, **kwargs):
-        super().__init__(titular = '')
-        self.titular = titular
+    def __init__(self, titular, edad: int, bonific: float):
+        super().__init__(titular = titular)
         self.edad = edad
         self.bonific = bonific
         # LA PROPIEDAD 'edad' SI BIEN NO FIGURA EN LA ESPECIFICACION
-        # DEL EJERCICIO, CREO ES NECESARIA PARA PODER UTILIZAR EL 
+        # DEL EJERCICIO, CREO ES NECESARIA PARA PODER UTILIZAR EL
         # METODO REQUERIDO 'es_titular_valido' Y PARA QUE LA CLASE
         # EN SI TENGA SENTIDO!!!!
 
@@ -54,7 +53,7 @@ class CuentaJoven(Cuenta):
         while edad <= 0 or edad > 120:
             print(f'{edad} años de edad? ...no está bién.')
             edad = int(input('Cual sería la edad correcta?: '))
-        
+
         self.__edad = edad
 
     def retirar(self, cant):
@@ -92,7 +91,7 @@ if __name__ == '__main__':
 
     print('Voy a retirar 500 de la cuenta de Julian')
     cj1.retirar(500)
-    print('...lo cual no va a ser posible porque Julian no tiene edad ingresada')
+    print('...lo cual no va a ser posible porque Julian no tiene edad adecuada')
     print(cj1.mostrar(),'\n')
 
     print('Intento crear la Cuenta Joven de Paula con 20 años y 150% de bonificación')

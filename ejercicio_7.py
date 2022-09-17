@@ -12,8 +12,8 @@ class Cuenta:
     __slots__ = ('__titular','__cantidad')
     
     def __init__(self, titular):
-        self.titular = titular
-        self.cantidad = 0.0
+        self.__titular = titular
+        self.__cantidad = 0.0
 
     @property
     def titular(self):
